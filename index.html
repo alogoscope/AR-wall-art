@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AR Wall Art Demo</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #ar-button {
+      padding: 60px 100px;
+      font-size: 3rem;
+      font-weight: bold;
+      border-radius: 16px;
+      border: none;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease;
+    }
+
+    #ar-button:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+
+  <button id="ar-button">View Wall Art in AR</button>
+
+  <model-viewer
+    id="viewer"
+    ios-src="wallart.usdz"
+    style="display: none;"
+    ar
+    ar-modes="quick-look scene-viewer webxr">
+  </model-viewer>
+
+  <script>
+    const button = document.getElementById('ar-button');
+    const isIOS = /iPhone|iPad/.test(navigator.userAgent);
+
+    button.addEventListener('click', () => {
+      if (isIOS) {
+        const anchor =
