@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AR Wall Art Demo</title>
+  <title>AR Wall Art</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
@@ -51,4 +51,15 @@
 
     button.addEventListener('click', () => {
       if (isIOS) {
-        const anchor =
+        const anchor = document.createElement('a');
+        anchor.setAttribute('rel', 'ar');
+        anchor.setAttribute('href', 'wallart.usdz');
+        anchor.click();
+      } else {
+        document.querySelector('model-viewer').activateAR();
+      }
+    });
+  </script>
+
+</body>
+</html>
